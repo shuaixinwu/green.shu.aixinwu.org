@@ -1,0 +1,24 @@
+{
+  "name": "green.shu.aixinwu.org",
+  "description": "",
+  "main": "",
+  "authors": [
+    "zhonger <wuwozhonger@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "green"
+  ],
+  "homepage": "https://github.com/zhonger/green.shu.aixinwu.org",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/src",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
