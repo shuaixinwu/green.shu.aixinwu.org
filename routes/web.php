@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'RecordController@index');
+Route::get('/login', 'UserController@login');
+Route::get('/complete', function(){return view('complete');});
+Route::get('/logout', 'UserController@logout');
+Route::get('/ranklist', 'RecordController@ranklist');

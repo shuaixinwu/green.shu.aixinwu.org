@@ -6,7 +6,9 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
-        "laravel/framework": "5.3.*"
+        "laravel/framework": "5.3.*",
+        "php-curl-class/php-curl-class": "^7.1",
+        "league/oauth2-client": "^1.4"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

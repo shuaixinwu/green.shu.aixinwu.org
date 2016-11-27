@@ -1,0 +1,28 @@
+.navbar .logo {
+    padding-left: 2.2rem;
+    background-repeat: no-repeat;
+    background-image: url(/images/logo.png);
+    background-size: 2rem;
+    background-position: center left;
+    font-family: "Microsoft Yahei";
+    font-weight: 100!important;
+    margin: 0 auto;
+}
+
+.swiper-slide {
+    background: #fff;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+}
+
+.swiper-slide span {
+    text-align: center;
+    display: block;
+    margin: 20px;
+    font-size: 21px;
+}
+
+.swiper-container {
+    height: 100%;
+    margin: 0rem 0;
+}
