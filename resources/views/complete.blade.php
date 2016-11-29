@@ -43,7 +43,7 @@
     </ul>
 </div>
 
-<a class="button button-big button-round button-fill external">确认提交</a> @endsection @section('body')
+<a class="button button-big button-round button-fill external" id="submit">确认提交</a> @endsection @section('body')
 <script>
     var pickerCollege = myApp.picker({
         input: '#college',
@@ -93,6 +93,29 @@
                 values: ('01 02 03 04 05 06 07 08 09 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34').split(' ')
         },
     ]
+    });
+    $$('#submit').click(function () {
+
+        if (pickerCollege.cols['length'] == 0 || pickerBuilding.cols['length'] == 0 || pickerRoom.cols['length'] == 0) {
+            myApp.alert('信息未填写完整!');
+        } else {
+            var college = pickerCollege.cols[0].value;
+            var building = pickerBuilding.cols[0].value + pickerBuilding.cols[1].value;
+            var room = pickerRoom.cols[0].value + pickerRoom.cols[1].value;
+            $$.post('/complete', {
+                college: college,
+                building: building,
+                room: room
+            }, function (data) {
+                var data = eval('(' + data + ')');
+                if (data['status'] == 0) {
+                    myApp.alert('信息有误,请重新填写!');
+                } else {
+                    window.location.href = "/";
+                }
+            });
+        }
+
     });
 </script>
 @endsection

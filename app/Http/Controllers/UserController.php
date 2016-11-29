@@ -58,6 +58,7 @@ class UserController extends Controller
                     $request->session()->put('complete','0');
                     return redirect('/complete');
                 }else{
+                    $request->session()->put('complete','1');
                     return redirect('/');
                 }
             }else{
@@ -72,5 +73,31 @@ class UserController extends Controller
     public function logout(Request $request){
         $request->session()->flush();
         return redirect('/');
+    }
+    
+    public function updateInfo(Request $request){
+        if ($request->isMethod('post')) {
+            if($request->has('college')&&$request->has('building')&&$request->has('room')){
+                $college =$request->input('college');
+                $building =$request->input('building');
+                $room =$request->input('room');
+                if($college==''||$building==''||$room==''){
+                    $this->response['status']=0;
+                    $this->response['content']='请求有误';
+                }else{
+                    DB::table('users')->where('userid',session('userid'))->update(['college'=>$college,'building'=>$building,'room'=>$room]);
+                    $this->response['status']=1;
+                    $this->response['content']='更新成功';
+                    $request->session()->put('complete','1');
+                }
+            }else{
+                $this->response['status']=0;
+                $this->response['content']='请求有误';
+            }          
+        }else{
+            $this->response['status']=0;
+            $this->response['content']='请求有误';
+        }
+        echo json_encode($this->response);
     }
 }

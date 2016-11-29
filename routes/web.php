@@ -16,3 +16,5 @@ Route::get('/login', 'UserController@login');
 Route::get('/complete', function(){return view('complete');});
 Route::get('/logout', 'UserController@logout');
 Route::get('/ranklist', 'RecordController@ranklist');
+
+Route::post('/complete','UserController@updateInfo');

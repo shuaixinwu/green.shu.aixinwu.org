@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>上海大学社区管理部</title>
     <link rel="stylesheet" href="/src/framework7/dist/css/framework7.ios.min.css">
     <link rel="stylesheet" href="/src/framework7/dist/css/framework7.ios.colors.min.css">
@@ -48,6 +49,11 @@
         var mySwiper1 = myApp.swiper('.swiper-1', {
             pagination: '.swiper-1 .swiper-pagination',
             spaceBetween: 50
+        });
+        $$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $$('meta[name="csrf-token"]').attr('content')
+            }
         });
     </script>
     @yield('body')
