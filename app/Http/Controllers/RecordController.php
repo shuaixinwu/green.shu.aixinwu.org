@@ -14,7 +14,13 @@ class RecordController extends Controller
         if(!session('userid')){
             return view('welcome');
         }else if(session('complete')){
-            return view('index');
+            $result=DB::table('users')->where('userid',session('userid'))->get()->first();
+            $this->response['data']['college']=$result->college;
+            $this->response['data']['building']=$result->building;
+            $this->response['data']['room']=$result->room;
+            $this->response['data']['greennum']=$result->greennum;
+            //echo $result->greennum;
+            return view('index',$this->response);
         }else{
             return redirect('/complete');
         }

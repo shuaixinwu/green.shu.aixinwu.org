@@ -6,12 +6,28 @@
     <div class="card-content">
         <div class="card-content-inner">
             <div class="row">
-                <div class="col-20">姓名：</div>
-                <div class="col-80">{{session('username')}}</div>
+                <div class="col-30">姓名：</div>
+                <div class="col-70">{{session('username')}}</div>
             </div>
             <div class="row">
-                <div class="col-20">学号：</div>
-                <div class="col-80">{{session('userid')}}</div>
+                <div class="col-30">学号：</div>
+                <div class="col-70">{{session('userid')}}</div>
+            </div>
+            <div class="row">
+                <div class="col-30">学院：</div>
+                <div class="col-70">{{$data['college']}}</div>
+            </div>
+            <div class="row">
+                <div class="col-30">楼幢：</div>
+                <div class="col-70">{{$data['building']}}</div>
+            </div>
+            <div class="row">
+                <div class="col-30">寝室号：</div>
+                <div class="col-70">{{$data['room']}}</div>
+            </div>
+            <div class="row">
+                <div class="col-30">每天碳排放量：</div>
+                <div class="col-70">{{$data['greennum']}}</div>
             </div>
         </div>
     </div>
