@@ -18,3 +18,7 @@ Route::get('/logout', 'UserController@logout');
 Route::get('/ranklist', 'RecordController@ranklist');
 
 Route::post('/complete','UserController@updateInfo');
+
+//Route::group(['middleware'=>'auth'],function(){
+    Route::get('/add',function(){return view('add');});
+//};

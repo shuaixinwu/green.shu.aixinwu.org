@@ -8,7 +8,7 @@
         <img src="/images/t3.png" class="swiper-slide">
     </div>
 </div>
-
+@endsection @section('bar')
 <div class="toolbar">
     <div class="toolbar-inner">
         <a href="/ranklist" class="external">查看碳排行</a>

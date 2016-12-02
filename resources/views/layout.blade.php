@@ -38,6 +38,7 @@
                     </div>
                 </div>
             </div>
+            @yield('bar')
         </div>
     </div>
     <script type="text/javascript" src="/src/framework7/dist/js/framework7.min.js"></script>
