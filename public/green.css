@@ -26,3 +26,7 @@
     height: 100%;
     margin: 0rem 0;
 }
+
+.list-block .item-title.label {
+    width: 70%!important;
+}

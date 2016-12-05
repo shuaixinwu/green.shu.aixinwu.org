@@ -97,7 +97,7 @@
     $$('#submit').click(function () {
 
         if (pickerCollege.cols['length'] == 0 || pickerBuilding.cols['length'] == 0 || pickerRoom.cols['length'] == 0) {
-            myApp.alert('信息未填写完整!');
+            myApp.alert('信息未填写完整!','友情提醒');
         } else {
             var college = pickerCollege.cols[0].value;
             var building = pickerBuilding.cols[0].value + pickerBuilding.cols[1].value;
@@ -109,7 +109,7 @@
             }, function (data) {
                 var data = eval('(' + data + ')');
                 if (data['status'] == 0) {
-                    myApp.alert('信息有误,请重新填写!');
+                    myApp.alert('信息有误,请重新填写!','友情提醒');
                 } else {
                     window.location.href = "/";
                 }
