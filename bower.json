@@ -20,6 +20,7 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "framework7": "^1.5.0"
+    "framework7": "^1.5.0",
+    "Framework7 Keypad": "framework7-keypad#^1.0.3"
   }
 }

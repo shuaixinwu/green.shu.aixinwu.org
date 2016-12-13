@@ -9,6 +9,10 @@
     margin: 0 auto;
 }
 
+.navbar a {
+    color: #000;
+}
+
 .swiper-slide {
     background: #fff;
     box-sizing: border-box;
@@ -29,4 +33,69 @@
 
 .list-block .item-title.label {
     width: 70%!important;
+}
+
+.total {
+    color: #000;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.total span {
+    color: green;
+    font-size: 1.3rem;
+}
+
+.rmargin {
+    margin: 0.5rem 0;
+}
+
+.list-block {
+    margin: 0.5rem 0;
+}
+
+#total {
+    font-size: 1rem;
+}
+
+#total span {
+    color: green;
+    font-size: 1.6rem;
+}
+
+.content-block-title {
+    margin-top: 0.5rem;
+}
+
+.popup {
+    background-color: #efefef;
+    color: #000!important;
+}
+
+.popup h3 {
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.popup p {
+    text-align: right;
+}
+
+p {
+    text-align: center;
+}
+
+.popup .content-block {
+    color: #000;
+}
+
+.popup .content-block-title {
+    text-align: center;
+    font-size: 1.0rem;
+    margin-top: 0.5rem;
+    color: #000;
+}
+
+.popup .item-after {
+    color: green;
 }
