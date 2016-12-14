@@ -429,9 +429,15 @@
 <div class="content-block rmargin">
     <div class="content-block-inner">
         <p id="total">总计碳排放量：<span>0</span> kg</p>
+        <p id="totalday">日均碳排放量：<span>0</span> kg</p>
     </div>
 </div>
-<div class="content-block"><a class=" button button-big button-round button-fill external" id="submit">确认提交</a></div>
+<div class="content-block">
+    <a class=" button button-big button-round button-fill external" id="checkday">计算日均碳排放量</a>
+</div>
+<div class="content-block">
+    <a class=" button button-big button-round button-fill external" id="submit">确认提交</a>
+</div>
 @endsection @section('body')
 <div class="popup popup-about">
     <div class="content-block">
@@ -439,38 +445,33 @@
         <p><a href="#" class="close-popup">关闭</a></p>
         <div class="content-block-title">衣</div>
         <div class="list-block">
-            <ul>
-
-            </ul>
+            <ul> </ul>
         </div>
         <div class="content-block-title">食</div>
         <div class="list-block">
-            <ul>
-
-            </ul>
+            <ul> </ul>
         </div>
         <div class="content-block-title">住</div>
         <div class="list-block">
-            <ul>
-
-            </ul>
+            <ul> </ul>
         </div>
         <div class="content-block-title">行</div>
         <div class="list-block">
-            <ul>
-
-            </ul>
+            <ul> </ul>
         </div>
     </div>
 </div>
+<input type="text" value="{{$endtime}}" hidden="hidden" id="stime">
 <script>
     var monthNames = ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
     var dayNamesShort = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
     var starttime = myApp.calendar({
         input: '#starttime',
-        disabled: {
-            to: new Date(2016, 10, 1)
-        },
+        disabled: [{
+            to: new Date($$('#stime').val())
+        }, {
+            from: new Date(Date('Y-m-d'))
+        }],
         monthNames: monthNames,
         dayNamesShort: dayNamesShort,
     });
@@ -478,9 +479,11 @@
     $$('#starttime').change(function () {
         var endtime = myApp.calendar({
             input: '#endtime',
-            disabled: {
+            disabled: [{
                 to: new Date($$('#starttime').val())
-            },
+            }, {
+                from: new Date(Date('Y-m-d'))
+            }],
             monthNames: monthNames,
             dayNamesShort: dayNamesShort,
         });
@@ -562,6 +565,78 @@
     $$('#tab4 input').change(function () {
         $$('#tab4 .total span').html(countTotal(3).toFixed(3));
         countTotals();
+    });
+
+    function listContent() {
+        var content = '';
+        for (var i = 0; i < $$('.tab input').length; i++) {
+            content = content + $$('.tab input').eq(i).val();
+            if (($$('.tab input').length - i) > 1) {
+                content += ',';
+            }
+        }
+        return content;
+    }
+
+    function getDays(strDateStart, strDateEnd) {
+        var strSeparator = "-"; //日期分隔符
+        var oDate1;
+        var oDate2;
+        var iDays;
+        oDate1 = strDateStart.split(strSeparator);
+        oDate2 = strDateEnd.split(strSeparator);
+        var strDateS = new Date(oDate1[0] + "-" + oDate1[1] + "-" + oDate1[2]);
+        var strDateE = new Date(oDate2[0] + "-" + oDate2[1] + "-" + oDate2[2]);
+        iDays = parseInt(Math.abs(strDateS - strDateE) / 1000 / 60 / 60 / 24) //把相差的毫秒数转换为天数 
+        return iDays + 1;
+    }
+
+    $$('#checkday').click(function () {
+        var starttime = $$('#starttime').val();
+        var endtime = $$('#endtime').val();
+        var total = $$('#total span').text();
+        if (starttime == '') {
+            myApp.alert('尚未选定开始日期！', '友情提示');
+        } else if (endtime == '') {
+            myApp.alert('尚未选定结束日期！', '友情提示');
+        } else if (total == '0' || total == '0.000') {
+            myApp.alert('尚未填写碳排放内容！', '友情提示');
+        } else {
+            var total = $$('#total span').text();
+            $$('#totalday span').html((total / getDays(starttime, endtime)).toFixed(3));
+        }
+    });
+
+    $$('#submit').click(function () {
+        var starttime = $$('#starttime').val();
+        var endtime = $$('#endtime').val();
+        var content = listContent();
+        var total = $$('#total span').text();
+        var totalday = $$('#totalday span').text();
+        if (starttime == '') {
+            myApp.alert('尚未选定开始日期！', '友情提示');
+        } else if (endtime == '') {
+            myApp.alert('尚未选定结束日期！', '友情提示');
+        } else if (total == '0' || total == '0.000') {
+            myApp.alert('尚未填写碳排放内容！', '友情提示');
+        } else if (totalday == '0' || totalday == '0.000') {
+            myApp.alert('尚未计算日均碳排放量！', '友情提示');
+        } else {
+            $$.post('/add', {
+                'starttime': starttime,
+                'endtime': endtime,
+                'content': content,
+                'total': total,
+                'totalday': totalday
+            }, function (response) {
+                var response = eval('(' + response + ')');
+                if (response['status'] == '1') {
+                    myApp.alert(response['content'] + '，2秒后自动跳转！', '友情提示');
+                    setTimeout("top.location.href = '/'", 2000);
+                }
+            });
+        }
+
     });
 </script>
 @endsection

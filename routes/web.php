@@ -19,6 +19,8 @@ Route::get('/ranklist', 'RecordController@ranklist');
 
 Route::post('/complete','UserController@updateInfo');
 
-//Route::group(['middleware'=>'auth'],function(){
-    Route::get('/add',function(){return view('add');});
-//};
+Route::group(['middleware'=>'isLogin'],function(){
+    Route::get('/add','RecordController@indexAdd');
+    Route::get('/list','RecordController@listRecords');
+    Route::post('/add','RecordController@add');
+});

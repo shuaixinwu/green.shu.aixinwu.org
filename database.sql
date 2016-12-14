@@ -15,6 +15,7 @@ create table records(
     starttime date,
     endtime date,
     content varchar(255),
-    total varchar(5),
+    total varchar(20),
+    total varchar(20) not null,
     updatetime datetime
 )

@@ -1,13 +1,15 @@
 @extends('layout') @section('content')
-
-<div class="swiper-container swiper-1">
-    <div class="swiper-pagination"></div>
-    <div class="swiper-wrapper">
-        <img src="/images/t1.png" class="swiper-slide">
-        <img src="/images/t2.png" class="swiper-slide">
-        <img src="/images/t3.png" class="swiper-slide">
+<div class="bg">
+    <div class="swiper-container swiper-1">
+        <div class="swiper-pagination"></div>
+        <div class="swiper-wrapper">
+            <img src="/images/t1.png" class="swiper-slide">
+            <img src="/images/t2.png" class="swiper-slide">
+            <img src="/images/t3.png" class="swiper-slide">
+        </div>
     </div>
 </div>
+
 @endsection @section('bar')
 <div class="toolbar">
     <div class="toolbar-inner">

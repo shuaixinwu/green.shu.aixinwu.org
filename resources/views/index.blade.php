@@ -35,6 +35,9 @@
 <div class=" theme-blue content-block">
     <a href="/add" class="button button-big button-round button-fill external">新增记录</a>
 </div>
+<div class=" theme-blue content-block">
+    <a href="/list" class="button button-big button-round button-fill external">查看记录</a>
+</div>
 <div class=" theme-red content-block">
     <a href="/logout" class="button button-big button-round button-fill external">注销登录</a>
 </div>
