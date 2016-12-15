@@ -13,14 +13,14 @@
 
 Route::get('/', 'RecordController@index');
 Route::get('/login', 'UserController@login');
-Route::get('/complete', function(){return view('complete');});
 Route::get('/logout', 'UserController@logout');
 Route::get('/ranklist', 'RecordController@ranklist');
-
-Route::post('/complete','UserController@updateInfo');
 
 Route::group(['middleware'=>'isLogin'],function(){
     Route::get('/add','RecordController@indexAdd');
     Route::get('/list','RecordController@listRecords');
+    Route::get('/detail','RecordController@detailRecords');
     Route::post('/add','RecordController@add');
+    Route::get('/complete', function(){return view('complete');});
+    Route::post('/complete','UserController@updateInfo');
 });

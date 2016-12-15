@@ -5,7 +5,7 @@ create table users(
     college char(2),
     building varchar(20),
     room varchar(5),
-    greennum varchar(5) default '0',
+    greennum varchar(20) default '0',
     lasttime datetime
 )
 

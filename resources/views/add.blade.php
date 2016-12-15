@@ -1,4 +1,4 @@
-@extends('layout') @section('head')
+@extends('layout1') @section('head')
 <link rel="stylesheet" href="/src/Framework7 Keypad/dist/framework7.keypad.min.css"> @endsection @section('content')
 <div class="content-block-title">开始日期</div>
 <div class="list-block">
@@ -621,6 +621,8 @@
             myApp.alert('尚未填写碳排放内容！', '友情提示');
         } else if (totalday == '0' || totalday == '0.000') {
             myApp.alert('尚未计算日均碳排放量！', '友情提示');
+        } else if (totalday !== (total / getDays(starttime, endtime)).toFixed(3)) {
+            myApp.alert('日均碳排放量与总碳排放量不吻合，请重新计算日均碳排放量！', '友情提示');
         } else {
             $$.post('/add', {
                 'starttime': starttime,

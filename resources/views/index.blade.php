@@ -26,11 +26,17 @@
                 <div class="col-75">{{$data['room']}}</div>
             </div>
             <div class="row no-gutter">
-                <div class="col-40">每天碳排放量：</div>
-                <div class="col-60">{{$data['greennum']}}</div>
+                <div class="col-40">日均碳排放量：</div>
+                <div class="col-60">{{$data['greennum']}} kg</div>
             </div>
         </div>
     </div>
+</div>
+<div class=" theme-blue content-block">
+    <a href="/complete" class="button button-big button-round button-fill external">修改信息</a>
+</div>
+<div class=" theme-blue content-block">
+    <a href="/ranklist" class="button button-big button-round button-fill external">查看排行榜</a>
 </div>
 <div class=" theme-blue content-block">
     <a href="/add" class="button button-big button-round button-fill external">新增记录</a>

@@ -1,4 +1,4 @@
-@extends('layout') @section('content') @if($status=='0')
+@extends('layout1') @section('content') @if($status=='0')
 <p>{{$content}}</p>
 @else @foreach($data as $record)
 <div class="card">
@@ -11,7 +11,7 @@
         </div>
     </div>
     <div class="card-footer">
-        <a href="#" class="link">查看详细</a>
+        <a href="/detail?id={{$record['id']}}" class="link external">查看详细</a>
     </div>
 </div>
 @endforeach @endif @endsection

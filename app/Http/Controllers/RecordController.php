@@ -50,6 +50,14 @@ class RecordController extends Controller
         DB::table('records')->insert(['userid'=>$userid,'starttime'=>$starttime,'endtime'=>$endtime,'content'=>$content,'total'=>$total,'totalday'=>$totalday]);
         $this->response['status']='1';
         $this->response['content']='提交成功';
+        $records=DB::table('records')->select('totalday')->where('userid',session('userid'))->get();
+        $sum =0;
+        $i=0;
+        foreach($records as $record){
+            $sum+=$record->totalday;
+            $i++;
+        }
+        DB::table('users')->where('userid',$userid)->update(['greennum'=>(round($sum/$i,3))]);        
         echo json_encode($this->response);
     }
     
@@ -58,6 +66,7 @@ class RecordController extends Controller
         $i=0;
         if(!$records->isEmpty()){
             foreach($records as $record){
+                $this->response['data'][$i]['id']=$record->id;
                 $this->response['data'][$i]['starttime']=$record->starttime;
                 $this->response['data'][$i]['endtime']=$record->endtime;
                 $this->response['data'][$i]['total']=$record->total;
@@ -71,7 +80,47 @@ class RecordController extends Controller
             $this->response['status']='0';
             $this->response['content']='暂时无记录';
         }       
-        //echo json_encode($this->response);
         return view('list',$this->response);
+    }
+    
+    public function detailRecords(Request $request){
+        if($request->has('id')){
+            $record=DB::table('records')->where('userid',session('userid'))->where('id',$request->id)->get()->first();
+            if(!empty($record)){
+                $this->response['status']='1';
+                $this->response['content']='查询成功';
+                $this->response['starttime']=$record->starttime;
+                $this->response['endtime']=$record->endtime;
+                $this->response['total']=$record->total;
+                $this->response['totalday']=$record->totalday;
+                $this->response['data']=$record->content;
+            }else{
+                $this->response['status']='0';
+                $this->response['content']='没有该id';
+            }
+        }else{
+            $this->response['status']='0';
+            $this->response['content']='参数缺失';
+        }
+        return view('detail',$this->response);
+    }
+    
+    public function ranklist(){
+        $records=DB::table('users')->select('userid','username','greennum')->orderBy('greennum','asc')->orderBy('userid','asc')->get();
+        if(!$records->isEmpty()){
+            $this->response['status']='1';
+            $this->response['content']='排列完成！';
+            $i=0;
+            foreach($records as $record){
+                $this->response['data'][$i]['userid']=$record->userid;
+                $this->response['data'][$i]['username']=substr_replace($record->username,'**',3);    
+                $this->response['data'][$i]['greennum']=$record->greennum;
+                $i++;
+            }        
+        }else{
+            $this->response['status']='0';
+            $this->response['content']='暂无排行';
+        }
+        return view('ranklist',$this->response);
     }
 }
