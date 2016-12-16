@@ -51,7 +51,7 @@
             } else {
                 num = parseInt(keynum[0]) + parseInt(keynum[1]) + parseInt(keynum[2]) + j;
             }
-            scale = scale + datas[num] * carbon[i][j] + "</div> </div></li>";
+            scale = scale + (datas[num] * carbon[i][j]).toFixed(3) + "</div> </div></li>";
         }
         $$(".list-block ul").eq(i).html(scale);
     }
