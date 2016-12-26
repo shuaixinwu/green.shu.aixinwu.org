@@ -16,6 +16,6 @@ create table records(
     endtime date,
     content varchar(255),
     total varchar(20),
-    total varchar(20) not null,
+    totalday varchar(20) not null,
     updatetime datetime
 )

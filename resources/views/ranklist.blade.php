@@ -2,14 +2,18 @@
 <div class="content-block ranklist">
     <h3>排行榜</h3>
     <ol>
-        @foreach($data as $record)
+
+        @if($status==0)
+        <p></p>
+        <p>暂无记录</p>
+
+        @else @foreach($data as $record)
         <li>
             <p>{{$record['greennum']}}</p>
             <p>{{$record['username']}}</p>
             <p>{{$record['userid']}}</p>
         </li>
-        @endforeach
-
+        @endforeach @endif
     </ol>
 </div>
 @endsection

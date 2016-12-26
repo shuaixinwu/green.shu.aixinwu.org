@@ -191,7 +191,7 @@ p {
     text-align: center;
 }
 
-.ranklist p {
+.ranklist li p {
     width: 30%;
     margin: 0 0;
     float: right;
