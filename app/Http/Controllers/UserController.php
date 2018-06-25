@@ -22,9 +22,9 @@ class UserController extends Controller
     }
     
     public function login(Request $request){
-        $clientId                = '7SbsDbBoL09NPAQ7UacHyZ4c';   
-        $clientSecret            = 'KbeA5Hyy3cJmVTXuiKNt1UJmdIOjjLtg';  
-        $redirectUri             = 'http://green.shu.aixinwu.org/login';
+        $clientId                = env(SHUID);   
+        $clientSecret            = env(SHUSECRET);  
+        $redirectUri             = 'https://green.shu.aixinwu.org/login';
         $urlAuthorize            = 'https://oauth.shu.edu.cn/oauth/authorize';
         $urlAccessToken          = 'https://oauth.shu.edu.cn/oauth/token';
         $urlResourceOwnerDetails = 'https://oauth.shu.edu.cn/rest/user/getLoggedInUser';
